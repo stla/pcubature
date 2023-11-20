@@ -108,6 +108,6 @@ integratePolynomialOnPolytope' p constraints = do
   vertices <- vertexenum constraints Nothing
   tessellation <- delaunay vertices True False Nothing
   let simplices = map IM.elems (getDelaunayTiles tessellation)
-  let integrals = map (integratePolynomialOnSimplex p) simplices 
+      integrals = map (integratePolynomialOnSimplex p) simplices 
   return $ sum integrals
 

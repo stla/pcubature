@@ -11,10 +11,10 @@ import qualified Prelude as P
 import Algebra.Additive              
 import Algebra.Module                
 import Algebra.Ring     
-import Math.Algebra.Hspray  ( Spray, (^**^) )
+import Math.Algebra.Hspray  ( Spray, lone, (^**^) )
 
 p :: Spray Double
-p v = x * (x + 1) - (y * z^**^2) 
+p = x * (x + one) - (y * z^**^2) 
   where
     x = lone 1 :: Spray Double
     y = lone 2 :: Spray Double
@@ -34,11 +34,11 @@ polytope = [
              y = newVar 2
              z = newVar 3
 
-integral :: IO Result
+integral :: IO Double
 integral = integratePolynomialOnPolytope' p polytope
 
 main :: IO ()
 main = do 
   i <- integral
   print i
--- Result {value = 74321.77499999988, errorEstimate = 1.0533262499999988e-7, evaluations = 330, success = True}
+-- 74321.77499999967
