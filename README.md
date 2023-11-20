@@ -25,6 +25,8 @@ integrateOnPolytope'
 ```
 
 ```haskell
+module Main 
+  where
 import Numeric.Integration.PolyhedralCubature
 import Data.Vector.Unboxed as V
 
@@ -45,6 +47,11 @@ cube = [
 
 integral :: IO Result
 integral = integrateOnPolytope' f cube 100000 0 1e-6 3
+
+main :: IO ()
+main = do 
+  i <- integral
+  print i
 -- Result {
 --          value = 5.073214090351428
 --        , errorEstimate = 2.8421152805879766e-6
@@ -180,5 +187,89 @@ numerical errors. The first numerical errors occur in the vertex enumeration
 performed by the **vertexenum** package:
 
 ```haskell
+module Main
+  where
+import Geometry.VertexEnum
+import Data.VectorSpace     ( 
+                              AdditiveGroup((^+^), (^-^))
+                            , VectorSpace((*^)) 
+                            )
 
+polytope :: [Constraint Double]
+polytope = [
+             x .>= (-5)         
+           , x .<=  4
+           , y .>= (-5)
+           , y .<=. cst 3 ^-^ x 
+           , z .>= (-10)
+           , z .<=. cst 6 ^-^ 2*^x ^-^ y 
+           ]
+           where
+             x = newVar 1
+             y = newVar 2
+             z = newVar 3
+
+vertices :: IO [[Double]]
+vertices = vertexenum polytope Nothing
+
+main :: IO ()
+main = do 
+  vs <- vertices
+  print vs
+-- [
+--   [-5.000000000000003,8.000000000000004,8.000000000000004]
+-- , [-4.999999999999998,-4.999999999999996,20.999999999999993]
+-- , [3.999999999999999,-0.9999999999999997,-1.0]
+-- , [3.999999999999999,-5.0,3.0000000000000004]
+-- , [-5.0,-5.0,-10.0]
+-- , [-5.0,8.000000000000002,-10.0]
+-- , [4.0,-0.9999999999999999,-10.0]
+-- , [4.0,-5.0,-10.0]
+-- ]
+```
+
+Since all coefficients of the linear inequalities are rational (they even are 
+integral), the vertices should be rational as well. 
+Unfortunately, **vertexenum** only allows to get vertices with double 
+coordinates. So if we want to use `Rational`, we have to manually enter 
+the vertices:
+
+```haskell
+module Main
+  where
+import Numeric.Integration.PolyhedralCubature
+import Prelude hiding       ( (*), (+), (-) )
+import qualified Prelude as P
+import Algebra.Additive              
+import Algebra.Module                
+import Algebra.Ring     
+import Math.Algebra.Hspray  ( Spray, lone, (^**^) )
+
+p :: Spray Rational
+p = x * (x + one) - (y * z^**^2) 
+  where
+    x = lone 1 :: Spray Rational
+    y = lone 2 :: Spray Rational
+    z = lone 3 :: Spray Rational
+
+polytope :: [[Rational]]
+polytope = [
+             [-5, 8, 8]
+           , [-5, -5, 21]
+           , [4, -1, -1]
+           , [4, -5, 3]
+           , [-5, -5, -10]
+           , [-5, 8, -10]
+           , [4, -1, -10]
+           , [4, -5, -10]
+           ]
+
+integral :: IO Double
+integral = integratePolynomialOnPolytope p polytope
+
+main :: IO ()
+main = do 
+  i <- integral
+  print i
+-- 
 ```
