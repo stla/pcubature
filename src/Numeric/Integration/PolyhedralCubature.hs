@@ -6,23 +6,25 @@ module Numeric.Integration.PolyhedralCubature
   , Result(..)
   , Results(..)
   , Constraint(..)
+  , integratePolynomialOnPolytope
   )
   where
-import Algebra.Ring                        ( C )
-import qualified Data.IntMap.Strict        as IM
-import Data.Vector.Unboxed                 ( Vector )
-import Geometry.Delaunay                   ( delaunay
-                                           , getDelaunayTiles 
-                                           )
-import Geometry.VertexEnum                 ( Constraint(..)
-                                           , vertexenum 
-                                           )
-import Math.Algebra.Hspray                 ( Spray )
-import Numeric.Integration.SimplexCubature ( Result(..)
-                                           , Results(..)
-                                           , integrateOnSimplex
-                                           , integrateOnSimplex'
-                                           )
+import Algebra.Ring                                     ( C )
+import qualified Data.IntMap.Strict                     as IM
+import Data.Vector.Unboxed                              ( Vector )
+import Geometry.Delaunay                                ( delaunay
+                                                        , getDelaunayTiles 
+                                                        )
+import Geometry.VertexEnum                              ( Constraint(..)
+                                                        , vertexenum 
+                                                        )
+import Math.Algebra.Hspray                              ( Spray )
+import Numeric.Integration.IntegratePolynomialOnSimplex ( integratePolynomialOnSimplex )
+import Numeric.Integration.SimplexCubature              ( Result(..)
+                                                        , Results(..)
+                                                        , integrateOnSimplex
+                                                        , integrateOnSimplex'
+                                                        )
 
 type VectorD = Vector Double
 
@@ -79,3 +81,20 @@ integrateOnPolytope'
 integrateOnPolytope' f constraints maxevals abserr relerr rule = do 
   vertices <- vertexenum constraints Nothing
   integrateOnPolytope f vertices maxevals abserr relerr rule
+
+delaunay' :: Real a => [[a]] -> IO [[[a]]]
+delaunay' points = do
+  let points' = map (map realToFrac) points
+  tessellation <- delaunay points' True False Nothing
+  let indices = map IM.keys (getDelaunayTiles tessellation)
+  return $ map (map (points !!)) indices
+
+integratePolynomialOnPolytope
+  :: (RealFrac a, C a)
+  => Spray a -- ^ polynomial to be integrated
+  -> [[a]]   -- ^ vertices of the polytope to integrate over
+  -> IO a
+integratePolynomialOnPolytope p vertices = do
+  simplices <- delaunay' vertices
+  let integrals = map (integratePolynomialOnSimplex p) simplices 
+  return $ sum integrals

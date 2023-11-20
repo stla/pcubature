@@ -26,27 +26,19 @@ packages:
   original:
     hackage: scubature-1.1.0.0@sha256:f7a939acead8c4a61a1654218bfcb19c3f2bc22e8ef98508558cc0061d3f7f93,1443
 - completed:
-    commit: beeb84c89fbf9e2e5b7e2bcdef25ba97fe13345d
-    git: https://github.com/stla/delaunayNd.git
-    name: delaunayNd
+    hackage: delaunayNd-0.1.0.2@sha256:c1eaaaf1b73274360fbeb2e2c5e9ee1607f2143a4d7bc4bcbc31911f987d21ec,2720
     pantry-tree:
-      sha256: 7a6d6416dee072244588861e5ee0d7a9618bd1f3ba193d1074e955d4a5b0a118
-      size: 3083
-    version: 0.1.0.2
+      sha256: 026ee1cd0ce94f8e6226bc47b22e87858dfd91704ee250cc2172991fbfea8af1
+      size: 2247
   original:
-    commit: beeb84c89fbf9e2e5b7e2bcdef25ba97fe13345d
-    git: https://github.com/stla/delaunayNd.git
+    hackage: delaunayNd-0.1.0.2
 - completed:
-    commit: e0c3325807a2226eae73dde3b609a59710905e8b
-    git: https://github.com/stla/vertexenum.git
-    name: vertexenum
+    hackage: vertexenum-0.1.1.0@sha256:eb96d4dffbe95e316774a3907afcd7d4434b78f4d4d4fe1bd0e3752cf586a419,3278
     pantry-tree:
-      sha256: d3c6085d627e5f09f7db2451ef3d813b16124f6c7872d2d616e8d1a69a2d9903
-      size: 2912
-    version: 0.1.1.0
+      sha256: 6734a36c97856c19749b2dfa35a6bab9eaee520cb53bf6a47e2165fa5378008a
+      size: 2344
   original:
-    commit: e0c3325807a2226eae73dde3b609a59710905e8b
-    git: https://github.com/stla/vertexenum.git
+    hackage: vertexenum-0.1.1.0
 - completed:
     hackage: Unique-0.4.7.9@sha256:7c37e22b7bb9df935c22112e67043177461aedcebe3a958854f6c0e9ecb54083,2155
     pantry-tree:
