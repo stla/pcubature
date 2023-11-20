@@ -1,3 +1,12 @@
+{-|
+Module      : Numeric.Integration.PolyhedralCubature
+Description : Multiple integration over convex polytopes.
+Copyright   : (c) Stéphane Laurent, 2023
+License     : GPL-3
+Maintainer  : laurent_step@outlook.fr
+
+Evaluation of integrals over a convex polytope. See README for examples.
+-}
 module Numeric.Integration.PolyhedralCubature
   ( integrateOnPolytopeN
   , integrateOnPolytope
@@ -29,6 +38,7 @@ import Numeric.Integration.SimplexCubature              ( Result(..)
 
 type VectorD = Vector Double
 
+-- | Integral of a multivariate function over a convex polytope given by its vertices.
 integrateOnPolytopeN
     :: (VectorD -> VectorD)   -- ^ integrand
     -> [[Double]]             -- ^ vertices of the polytope
@@ -43,6 +53,7 @@ integrateOnPolytopeN f vertices dim maxevals abserr relerr rule = do
   let simplices = map IM.elems (getDelaunayTiles tessellation)
   integrateOnSimplex f simplices dim maxevals abserr relerr rule
 
+-- | Integral of a real-valued function over a convex polytope given by its vertices.
 integrateOnPolytope
     :: (VectorD -> Double)    -- ^ integrand
     -> [[Double]]             -- ^ vertices of the polytope
@@ -56,6 +67,7 @@ integrateOnPolytope f vertices maxevals abserr relerr rule = do
   let simplices = map IM.elems (getDelaunayTiles tessellation)
   integrateOnSimplex' f simplices maxevals abserr relerr rule
 
+-- | Integral of a multivariate function over a convex polytope given by linear inequalities.
 integrateOnPolytopeN'
     :: Real a
     => (VectorD -> VectorD)   -- ^ integrand
@@ -70,6 +82,7 @@ integrateOnPolytopeN' f constraints dim maxevals abserr relerr rule = do
   vertices <- vertexenum constraints Nothing
   integrateOnPolytopeN f vertices dim maxevals abserr relerr rule
 
+-- | Integral of a scalar-valued function over a convex polytope given by linear inequalities.
 integrateOnPolytope'
     :: Real a
     => (VectorD -> Double)    -- ^ integrand
@@ -90,6 +103,7 @@ delaunay' points = do
   let indices = map IM.keys (getDelaunayTiles tessellation)
   return $ map (map (points !!)) indices
 
+-- | Integral of a polynomial over a convex polytope given by its vertices.
 integratePolynomialOnPolytope
   :: (RealFrac a, C a)
   => Spray a -- ^ polynomial to be integrated
@@ -100,9 +114,10 @@ integratePolynomialOnPolytope p vertices = do
   let integrals = map (integratePolynomialOnSimplex p) simplices 
   return $ sum integrals
 
+-- | Integral of a polynomial over a convex polytope given by linear inequalities.
 integratePolynomialOnPolytope'
   :: Spray Double        -- ^ polynomial to be integrated
-  -> [Constraint Double] -- ^ vertices of the polytope to integrate over
+  -> [Constraint Double] -- ^ linear inequalities defining the polytope
   -> IO Double
 integratePolynomialOnPolytope' p constraints = do
   vertices <- vertexenum constraints Nothing

@@ -6,6 +6,7 @@
 
 *Multiple integration over convex polytopes.*
 
+**Warning:** the package does not work in GHCi.
 ___
 
 This package allows to evaluate a multiple integral over a convex polytope. 
