@@ -175,4 +175,10 @@ main = do
 ```
 
 The function `integratePolynomialOnSimplex` implements an exact procedure. 
-However we didn't get the exact result. 
+However we didn't get the exact result. That's because of (small) 
+numerical errors. The first numerical errors occur in the vertex enumeration 
+performed by the **vertexenum** package:
+
+```haskell
+
+```
