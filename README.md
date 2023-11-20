@@ -6,13 +6,18 @@
 
 *Multiple integration over convex polytopes.*
 
-**Warning:** the package does not work in GHCi.
+***Warning:*** the package does not work in GHCi.
+
+***Info:*** the package indirectly depends on the **hmatrix-glpk** package; 
+follow [this link](https://github.com/haskell-numerics/hmatrix/blob/master/INSTALL.md)
+for installation instructions.
+
 ___
 
 This package allows to evaluate a multiple integral over a convex polytope. 
 Let's consider for example the following integral:
 
-$$\int\_0^1\int\_0^1\int\_0^1 \exp(x+y+z)\\,\text{d}z\\,\text{d}y\\,\text{d}x = {(e-1)}^3 \approx 5.07321411177285.$$
+$$\int_0^1\int_0^1\int_0^1 \exp(x+y+z)\,\text{d}z\,\text{d}y\,\text{d}x = {(e-1)}^3 \approx 5.07321411177285.$$
 
 The domain of integration is the cube ${[0,1]}^3$. In order to use the package, 
 one has to provide the vertices of this cube:
@@ -52,7 +57,7 @@ cube = [
        ]
 
 integral :: IO Result
-integral = integrateOnPolytope' f cube 100000 0 1e-6 3
+integral = integrateOnPolytope' f cube 10000 0 1e-6 3
 
 main :: IO ()
 main = do 
@@ -80,7 +85,7 @@ $$\left\{\begin{matrix} -5  & \leq & x & \leq & 4 \\\ -5  & \leq & y & \leq & 3-
 Each of these linear inequalities defines a halfspace of $\mathbb{R}^3$, and 
 the intersection of these six halfspaces is a convex polytope (a polyhedron).
 
-However it is not easy to get the vertices of this polytope. This is why the 
+But it is not easy to get the vertices of this polytope. This is why the 
 **pcubature** package depends on the **vertexenum** package, whose purpose is 
 to enumerate the vertices of a polytope given as above, with linear 
 inequalities. Let's take as example the function $f(x,y,z) = x(x+1) - yz^2$:
@@ -118,7 +123,7 @@ polytope = [
              z = newVar 3
 
 integral :: IO Result
-integral = integrateOnPolytope' f polytope 100000 0 1e-6 3
+integral = integrateOnPolytope' f polytope 10000 0 1e-6 3
 
 main :: IO ()
 main = do 
@@ -149,12 +154,12 @@ import Data.VectorSpace     (
                               AdditiveGroup((^+^), (^-^))
                             , VectorSpace((*^)) 
                             )
+import Math.Algebra.Hspray  ( Spray, lone, (^**^) )
 import Prelude hiding       ( (*), (+), (-) )
 import qualified Prelude as P
 import Algebra.Additive              
 import Algebra.Module                
-import Algebra.Ring     
-import Math.Algebra.Hspray  ( Spray, lone, (^**^) )
+import Algebra.Ring
 
 p :: Spray Double
 p = x * (x + one) - (y * z^**^2) 
@@ -244,12 +249,12 @@ the vertices:
 module Main
   where
 import Numeric.Integration.PolyhedralCubature
+import Math.Algebra.Hspray  ( Spray, lone, (^**^) )
 import Prelude hiding       ( (*), (+), (-) )
 import qualified Prelude as P
 import Algebra.Additive              
 import Algebra.Module                
-import Algebra.Ring     
-import Math.Algebra.Hspray  ( Spray, lone, (^**^) )
+import Algebra.Ring
 
 p :: Spray Rational
 p = x * (x + one) - (y * z^**^2) 
