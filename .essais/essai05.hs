@@ -27,7 +27,7 @@ polytope = [
            , [4, -5, -10]
            ]
 
-integral :: IO Double
+integral :: IO Rational
 integral = integratePolynomialOnPolytope p polytope
 
 main :: IO ()
