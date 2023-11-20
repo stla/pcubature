@@ -7,6 +7,7 @@ module Numeric.Integration.PolyhedralCubature
   , Results(..)
   , Constraint(..)
   , integratePolynomialOnPolytope
+  , integratePolynomialOnPolytope'
   )
   where
 import Algebra.Ring                                     ( C )
@@ -98,3 +99,15 @@ integratePolynomialOnPolytope p vertices = do
   simplices <- delaunay' vertices
   let integrals = map (integratePolynomialOnSimplex p) simplices 
   return $ sum integrals
+
+integratePolynomialOnPolytope'
+  :: Spray Double        -- ^ polynomial to be integrated
+  -> [Constraint Double] -- ^ vertices of the polytope to integrate over
+  -> IO Double
+integratePolynomialOnPolytope' p constraints = do
+  vertices <- vertexenum constraints Nothing
+  tessellation <- delaunay vertices True False Nothing
+  let simplices = map IM.elems (getDelaunayTiles tessellation)
+  let integrals = map (integratePolynomialOnSimplex p) simplices 
+  return $ sum integrals
+
