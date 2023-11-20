@@ -1,7 +1,11 @@
 module Numeric.Integration.PolyhedralCubature
-  ( integrateOnPolytope
+  ( integrateOnPolytopeN
+  , integrateOnPolytope
+  , integrateOnPolytopeN'
   , integrateOnPolytope'
   , Result(..)
+  , Results(..)
+  , Constraint(..)
   )
   where
 import qualified Data.IntMap.Strict        as IM
@@ -21,7 +25,7 @@ import Numeric.Integration.SimplexCubature ( Result(..)
 
 type VectorD = Vector Double
 
-integrateOnPolytope
+integrateOnPolytopeN
     :: (VectorD -> VectorD)   -- ^ integrand
     -> [[Double]]             -- ^ vertices of the polytope
     -> Int                    -- ^ number of components of the integrand
@@ -30,12 +34,12 @@ integrateOnPolytope
     -> Double                 -- ^ desired relative error
     -> Int                    -- ^ integration rule: 1, 2, 3 or 4
     -> IO Results             -- ^ values, error estimate, evaluations, success
-integrateOnPolytope f vertices dim maxevals abserr relerr rule = do 
+integrateOnPolytopeN f vertices dim maxevals abserr relerr rule = do 
   tessellation <- delaunay vertices False False Nothing
   let simplices = map IM.elems (getDelaunayTiles tessellation)
   integrateOnSimplex f simplices dim maxevals abserr relerr rule
 
-integrateOnPolytope'
+integrateOnPolytope
     :: (VectorD -> Double)    -- ^ integrand
     -> [[Double]]             -- ^ vertices of the polytope
     -> Int                    -- ^ maximum number of evaluations
@@ -43,7 +47,34 @@ integrateOnPolytope'
     -> Double                 -- ^ desired relative error
     -> Int                    -- ^ integration rule: 1, 2, 3 or 4
     -> IO Result              -- ^ values, error estimate, evaluations, success
-integrateOnPolytope' f vertices maxevals abserr relerr rule = do 
+integrateOnPolytope f vertices maxevals abserr relerr rule = do 
   tessellation <- delaunay vertices True False Nothing
   let simplices = map IM.elems (getDelaunayTiles tessellation)
   integrateOnSimplex' f simplices maxevals abserr relerr rule
+
+integrateOnPolytopeN'
+    :: Real a
+    => (VectorD -> VectorD)   -- ^ integrand
+    -> [Constraint a]         -- ^ linear inequalities defining the polytope
+    -> Int                    -- ^ number of components of the integrand
+    -> Int                    -- ^ maximum number of evaluations
+    -> Double                 -- ^ desired absolute error
+    -> Double                 -- ^ desired relative error
+    -> Int                    -- ^ integration rule: 1, 2, 3 or 4
+    -> IO Results             -- ^ values, error estimate, evaluations, success
+integrateOnPolytopeN' f constraints dim maxevals abserr relerr rule = do 
+  vertices <- vertexenum constraints Nothing
+  integrateOnPolytopeN f vertices dim maxevals abserr relerr rule
+
+integrateOnPolytope'
+    :: Real a
+    => (VectorD -> Double)    -- ^ integrand
+    -> [Constraint a]         -- ^ linear inequalities defining the polytope
+    -> Int                    -- ^ maximum number of evaluations
+    -> Double                 -- ^ desired absolute error
+    -> Double                 -- ^ desired relative error
+    -> Int                    -- ^ integration rule: 1, 2, 3 or 4
+    -> IO Result              -- ^ values, error estimate, evaluations, success
+integrateOnPolytope' f constraints maxevals abserr relerr rule = do 
+  vertices <- vertexenum constraints Nothing
+  integrateOnPolytope f vertices maxevals abserr relerr rule

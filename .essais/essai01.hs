@@ -21,7 +21,7 @@ polytope = [
            ]
 
 integral :: IO Result
-integral = integrateOnPolytope' f polytope 100000 0 1e-6 3
+integral = integrateOnPolytope f polytope 100000 0 1e-6 3
 
 main :: IO ()
 main = do 
