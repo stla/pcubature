@@ -44,6 +44,6 @@ integrateOnPolytope'
     -> Int                    -- ^ integration rule: 1, 2, 3 or 4
     -> IO Result              -- ^ values, error estimate, evaluations, success
 integrateOnPolytope' f vertices maxevals abserr relerr rule = do 
-  tessellation <- delaunay vertices False False Nothing
+  tessellation <- delaunay vertices True False Nothing
   let simplices = map IM.elems (getDelaunayTiles tessellation)
   integrateOnSimplex' f simplices maxevals abserr relerr rule

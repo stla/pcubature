@@ -1,3 +1,5 @@
+module Main
+  where
 import Numeric.Integration.PolyhedralCubature
 import Data.Vector.Unboxed as V
 
@@ -8,7 +10,7 @@ f v = exp (V.sum v)
 
 polytope :: [[Double]]
 polytope = [
-           , [0, 0, 0]
+             [0, 0, 0]
            , [0, 0, 1]
            , [0, 1, 0]
            , [0, 1, 1]
@@ -17,3 +19,11 @@ polytope = [
            , [1, 1, 0]
            , [1, 1, 1]
            ]
+
+integral :: IO Result
+integral = integrateOnPolytope' f polytope 100000 0 1e-6 3
+
+main :: IO ()
+main = do 
+  i <- integral
+  print i
