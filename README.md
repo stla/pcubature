@@ -4,9 +4,12 @@
 [![Stack](https://github.com/stla/pcubature/actions/workflows/Stack.yml/badge.svg)](https://github.com/stla/pcubature/actions/workflows/Stack.yml)
 <!-- badges: end -->
 
-*Multiple integration on convex polytopes.*
+*Multiple integration over convex polytopes.*
 
 ___
+
+This package allows to evaluate a multiple integral over a convex polytope. 
+Let's consider for example the following integral:
 
 $$\int\_0^1\int\_0^1\int\_0^1 \exp(x+y+z)\\,\text{d}z\\,\text{d}y\\,\text{d}x = {(e-1)}^3 \approx 5.07321411177285.$$
 
@@ -15,14 +18,16 @@ one has to provide the vertices of this cube:
 
 ```haskell
 integrateOnPolytope'
-    :: (VectorD -> Double)    -- ^ integrand
-    -> [[Double]]             -- ^ vertices of the polytope
-    -> Int                    -- ^ maximum number of evaluations
-    -> Double                 -- ^ desired absolute error
-    -> Double                 -- ^ desired relative error
-    -> Int                    -- ^ integration rule: 1, 2, 3 or 4
-    -> IO Result              -- ^ values, error estimate, evaluations, success
+    :: (Vector Double -> Double) -- ^ integrand
+    -> [[Double]]                -- ^ vertices of the polytope
+    -> Int                       -- ^ maximum number of evaluations
+    -> Double                    -- ^ desired absolute error
+    -> Double                    -- ^ desired relative error
+    -> Int                       -- ^ integration rule: 1, 2, 3 or 4
+    -> IO Result                 -- ^ value, error estimate, evaluations, success
 ```
+
+Let's go:
 
 ```haskell
 module Main 
@@ -77,7 +82,7 @@ the intersection of these six halfspaces is a convex polytope (a polyhedron).
 However it is not easy to get the vertices of this polytope. This is why the 
 **pcubature** package depends on the **vertexenum** package, whose purpose is 
 to enumerate the vertices of a polytope given as above, with linear 
-inequalities. Let's take as example the function $f(x,y,z) = x(x+1) - yz^2$.
+inequalities. Let's take as example the function $f(x,y,z) = x(x+1) - yz^2$:
 
 ```haskell
 module Main

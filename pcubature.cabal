@@ -2,8 +2,8 @@ cabal-version:       2.2
 
 name:                pcubature
 version:             0.1.0.0
-synopsis:            Integration on convex polytopes
-description:         Multiple integration on convex polytopes.
+synopsis:            Integration over convex polytopes
+description:         Multiple integration over convex polytopes.
 homepage:            https://github.com/stla/pcubature#readme
 license:             GPL-3.0-only
 license-file:        LICENSE
