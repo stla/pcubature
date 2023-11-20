@@ -2,10 +2,10 @@ cabal-version:       2.2
 
 name:                pcubature
 version:             0.1.0.0
--- synopsis:
--- description:
+synopsis:            Integration on convex polytopes
+description:         Multiple integration on convex polytopes.
 homepage:            https://github.com/stla/pcubature#readme
-license:             BSD-3-Clauselicense:             GPL-3.0-only
+license:             GPL-3.0-only
 license-file:        LICENSE
 author:              Stéphane Laurent
 maintainer:          laurent_step@outlook.fr
@@ -20,11 +20,11 @@ library
   exposed-modules:     Numeric.Integration.PolyhedralCubature
   build-depends:       base >= 4.7 && < 5
                      , containers >= 0.6.2.1 && < 0.8
-					 , delaunayNd >= 0.1.0.2 && < 0.2
-					 , hspray >= 0.1.0.0 && < 0.2
-					 , scubature >= 1.1.0.0 && < 1.2
-					 , vector >= 0.13.0 && < 0.14
-					 , vertexenum >= 0.1.1.0 && < 0.2
+                     , delaunayNd >= 0.1.0.2 && < 0.2
+                     , hspray >= 0.1.0.0 && < 0.2
+                     , scubature >= 1.1.0.0 && < 1.2
+                     , vector >= 0.12.3 && < 0.14
+                     , vertexenum >= 0.1.1.0 && < 0.2
   default-language:    Haskell2010
   ghc-options:         -Wall
                        -Wcompat

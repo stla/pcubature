@@ -41,7 +41,25 @@ packages:
 #
 extra-deps:
   - hmatrix-glpk-0.19.0.0@sha256:cf46c54bc3878bd207674ad88c3389083809f4df862df68ee64c6708dc517a52,1683
-
+  - hspray-0.1.3.0@sha256:45e95f8fc9122a15c046495e841315570b78290fc7e2bcb14494934a304611d0,1942
+  - scubature-1.1.0.0@sha256:f7a939acead8c4a61a1654218bfcb19c3f2bc22e8ef98508558cc0061d3f7f93,1443
+  - git: https://github.com/stla/delaunayNd.git
+    commit: beeb84c89fbf9e2e5b7e2bcdef25ba97fe13345d
+  - git: https://github.com/stla/vertexenum.git
+    commit: e0c3325807a2226eae73dde3b609a59710905e8b
+  - Unique-0.4.7.9@sha256:7c37e22b7bb9df935c22112e67043177461aedcebe3a958854f6c0e9ecb54083,2155
+  - numeric-prelude-0.4.4@sha256:e9a8e675b339e64c77242bce6a7215c7921ff5c2e2a4247139f16e03b8b0aa70,6531
+  - unordered-containers-0.2.19.1@sha256:1c28ca429e3960de0330908579a427ccacddd700cb84ec1969e2bbe576152add,3698
+  - vector-stream-0.1.0.0@sha256:8977959d4bec54d9f2c5e9d4baa2cac7ab26e804a72591df8db887e0692ae8ae,1404
+  - Cabal-3.2.1.0@sha256:8743076ec022296f9771d962000c9ca3a0fe02e68c37b992c63e382a675f791d,27482
+  - data-array-byte-0.1.0.1@sha256:ad89e28b2b046175698fbf542af2ce43e5d2af50aae9f48d12566b1bb3de1d3c,1989
+  - parsec-3.1.17.0@sha256:6cf18e59d9f1c5b40385457b82ab679dc18d3c5bd3c2c67b2f94e1e8732e6624,5119
+  - vector-0.12.3.1@sha256:39141f312871b7c793a63be76635999e84d442aa3290aec59f30638ec0bf23a7,8218
+  - base-orphans-0.8.8.2@sha256:b62d60c8b7c507f0d0085925fad398e4fcda928c14b524be0148effd99cfb97d,3222
+  - hashable-1.3.5.0@sha256:3a2beeafb220f9de706568a7e4a5b3c762cc4c9f25c94d7ef795b8c2d6a691d7,4240
+  - text-1.2.5.0@sha256:791f0f6c97ed96113f17ab520cf0efe1a3a4f883a8c85910a5660567c8241c40,7895
+  - insert-ordered-containers-0.2.5.3@sha256:40b1454477141796d9647904c09d1a03ca792e6111161d854c2e806156c4cf37,2384
+           
 # Override default flag values for local packages and extra-deps
 flags:
   hmatrix:
