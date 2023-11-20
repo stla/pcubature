@@ -36,3 +36,4 @@ main :: IO ()
 main = do 
   i <- integral
   print i
+-- Result {value = 74321.77499999988, errorEstimate = 1.0533262499999988e-7, evaluations = 330, success = True}

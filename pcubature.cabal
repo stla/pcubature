@@ -22,6 +22,7 @@ library
                      , containers >= 0.6.2.1 && < 0.8
                      , delaunayNd >= 0.1.0.2 && < 0.2
                      , hspray >= 0.1.0.0 && < 0.2
+                     , numeric-prelude >= 0.4.4 && < 0.5
                      , scubature >= 1.1.0.0 && < 1.2
                      , vector >= 0.12.3 && < 0.14
                      , vertexenum >= 0.1.1.0 && < 0.2

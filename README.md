@@ -54,5 +54,67 @@ integral = integrateOnPolytope' f cube 100000 0 1e-6 3
 ```
 
 This cube is axis-aligned. So it may be better to use the **adaptive-cubature** 
-package here.
+package here. The **pcubature** package allows to evaluate multiple integrals 
+whose bounds are (roughly speaking) linear combinations of the variables, 
+such as:
 
+$$\int\_{-5}^4\int\_{-5}^{3-x}\int\_{-10}^{6-2x-y} f(x, y, z)\\,\text{d}z\\,\text{d}y\\,\text{d}x.$$
+
+Here, the domain of integration is given by the set of linear inequalities:
+
+$$\left\{\begin{matrix} -5  & \leq & x & \leq & 4 \\\ -5  & \leq & y & \leq & 3-x \\\ -10 & \leq & z & \leq & 6-2x-y \end{matrix}\right.$$
+
+Each of these linear inequalities defines a halfspace of $\mathbb{R}^3$, and 
+the intersection of these six halfspaces is a convex polytope (a polyhedron).
+
+However it is not easy to get the vertices of this polytope. This is why the 
+**pcubature** package depends on the **vertexenum** package, whose purpose is 
+to enumerate the vertices of a polytope given as above, with linear 
+inequalities. Let's take as example the function $f(x,y,z) = x(x+1) - yz^2$.
+
+```haskell
+module Main
+  where
+import Numeric.Integration.PolyhedralCubature
+import Geometry.VertexEnum
+import Data.VectorSpace     ( 
+                              AdditiveGroup((^+^), (^-^))
+                            , VectorSpace((*^)) 
+                            )
+import Data.Vector.Unboxed  as V
+
+f :: Vector Double -> Double
+f v = x * (x+1) - y * z * z
+  where
+    x = v ! 0
+    y = v ! 1
+    z = v ! 2
+
+polytope :: [Constraint Double]
+polytope = [
+             x .>= (-5)         -- shortcut for `x .>=. cst (-5)`
+           , x .<=  4
+           , y .>= (-5)
+           , y .<=. cst 3 ^-^ x -- we need `cst` here
+           , z .>= (-10)
+           , z .<=. cst 6 ^-^ 2*^x ^-^ y 
+           ]
+           where
+             x = newVar 1
+             y = newVar 2
+             z = newVar 3
+
+integral :: IO Result
+integral = integrateOnPolytope' f polytope 100000 0 1e-6 3
+
+main :: IO ()
+main = do 
+  i <- integral
+  print i
+-- Result {
+--          value = 74321.77499999988
+--        , errorEstimate = 1.0533262499999988e-7
+--        , evaluations = 330
+--        , success = True
+--        }
+```

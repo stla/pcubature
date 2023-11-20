@@ -8,6 +8,7 @@ module Numeric.Integration.PolyhedralCubature
   , Constraint(..)
   )
   where
+import Algebra.Ring                        ( C )
 import qualified Data.IntMap.Strict        as IM
 import Data.Vector.Unboxed                 ( Vector )
 import Geometry.Delaunay                   ( delaunay

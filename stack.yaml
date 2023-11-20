@@ -43,10 +43,8 @@ extra-deps:
   - hmatrix-glpk-0.19.0.0@sha256:cf46c54bc3878bd207674ad88c3389083809f4df862df68ee64c6708dc517a52,1683
   - hspray-0.1.3.0@sha256:45e95f8fc9122a15c046495e841315570b78290fc7e2bcb14494934a304611d0,1942
   - scubature-1.1.0.0@sha256:f7a939acead8c4a61a1654218bfcb19c3f2bc22e8ef98508558cc0061d3f7f93,1443
-  - git: https://github.com/stla/delaunayNd.git
-    commit: beeb84c89fbf9e2e5b7e2bcdef25ba97fe13345d
-  - git: https://github.com/stla/vertexenum.git
-    commit: e0c3325807a2226eae73dde3b609a59710905e8b
+  - delaunayNd-0.1.0.2
+  - vertexenum-0.1.1.0
   - Unique-0.4.7.9@sha256:7c37e22b7bb9df935c22112e67043177461aedcebe3a958854f6c0e9ecb54083,2155
   - numeric-prelude-0.4.4@sha256:e9a8e675b339e64c77242bce6a7215c7921ff5c2e2a4247139f16e03b8b0aa70,6531
   - unordered-containers-0.2.19.1@sha256:1c28ca429e3960de0330908579a427ccacddd700cb84ec1969e2bbe576152add,3698
