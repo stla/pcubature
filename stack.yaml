@@ -1,4 +1,4 @@
-resolver: lts-21.20
+resolver: lts-18.28
 
 packages:
 - .
@@ -11,7 +11,26 @@ extra-deps:
   - vertexenum-0.1.1.0
   - Unique-0.4.7.9@sha256:7c37e22b7bb9df935c22112e67043177461aedcebe3a958854f6c0e9ecb54083,2155
   - ilist-0.4.0.1@sha256:126019faf3d02f305c5762ae9602be1cbf76291153a1a7461270ad1429678111,3305
-           
+  - hashable-1.4.3.0@sha256:f3bf68acfa0df7a064a378ef2cdcfeb55e6fb96100675f4c593556dcbf3d7194,4718
+  - insert-ordered-containers-0.2.5.3@sha256:7648a0e91b0af2ed553d3950f098438b999c50d885781fc256823b7032d7d389,2420
+  - numeric-prelude-0.4.4@sha256:e9a8e675b339e64c77242bce6a7215c7921ff5c2e2a4247139f16e03b8b0aa70,6531
+  - text-2.0.2@sha256:71b5fa8c64d3c1fd0a08f993463220867b08290a2256e94b0952bf0e8f5a45cc,9905
+  - unordered-containers-0.2.19.1@sha256:1c28ca429e3960de0330908579a427ccacddd700cb84ec1969e2bbe576152add,3698         
+  - Cabal-3.2.1.0@sha256:8743076ec022296f9771d962000c9ca3a0fe02e68c37b992c63e382a675f791d,27482
+  - data-array-byte-0.1.0.1@sha256:ad89e28b2b046175698fbf542af2ce43e5d2af50aae9f48d12566b1bb3de1d3c,1989
+  - parsec-3.1.17.0@sha256:6cf18e59d9f1c5b40385457b82ab679dc18d3c5bd3c2c67b2f94e1e8732e6624,5119
+
+allow-newer: true
+
+allow-newer-deps: 
+  - Cabal
+  - aeson
+  - attoparsec
+  - lens
+  - optics-extra
+  - scientific 
+  - strict
+  - uuid-types.
 # !!!!!!!!!! UNCOMMENT BELOW !!!!!!!!!!
 #flags:
 #  hmatrix:
