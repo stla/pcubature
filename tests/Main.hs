@@ -3,7 +3,7 @@ import Data.Ratio           ( (%) )
 import Numeric.Integration.PolyhedralCubature ( integratePolynomialOnPolytope )
 import Math.Algebra.Hspray  ( Spray, lone, (^**^), (^*^), (^+^), (^-^), unitSpray )
 import Test.Tasty           ( defaultMain, testGroup )
-import Test.Tasty.HUnit     ( testCase, assertEqual, assertBool )
+import Test.Tasty.HUnit     ( testCase, assertEqual )
 
 
 main :: IO ()
