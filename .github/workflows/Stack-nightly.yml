@@ -1,4 +1,4 @@
-name: Stack
+name: Stack-nightly
 
 on:
   pull_request:
@@ -14,9 +14,6 @@ jobs:
 
         resolver:
           - nightly
-          - lts       # ghc-9.6 (as of writing)
-          - lts-21.25 # ghc 9.4
-          - lts-20.26 # ghc-9.2
 
       fail-fast: false
 

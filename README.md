@@ -1,16 +1,13 @@
 # pcubature
 
 <!-- badges: start -->
-[![Stack](https://github.com/stla/pcubature/actions/workflows/Stack.yml/badge.svg)](https://github.com/stla/pcubature/actions/workflows/Stack.yml)
+[![Stack](https://github.com/stla/pcubature/actions/workflows/Stack-lts.yml/badge.svg)](https://github.com/stla/pcubature/actions/workflows/Stack-lts.yml)
+[![Stack](https://github.com/stla/pcubature/actions/workflows/Stack-nightly.yml/badge.svg)](https://github.com/stla/pcubature/actions/workflows/Stack-nightly.yml)
 <!-- badges: end -->
 
-*Multiple integration over convex polytopes.*
+***Multiple integration over convex polytopes.***
 
 ***Warning:*** the package does not work in GHCi.
-
-***Info:*** the package indirectly depends on the **hmatrix-glpk** package; 
-follow [this link](https://github.com/haskell-numerics/hmatrix/blob/master/INSTALL.md)
-for installation instructions.
 
 ___
 
@@ -192,7 +189,7 @@ main = do
 -- 74321.77499999967
 ```
 
-The function `integratePolynomialOnSimplex` implements an exact procedure. 
+The function `integratePolynomialOnPolytope` implements an exact procedure. 
 However we didn't get the exact result. That's because of (small) 
 numerical errors. The first numerical errors occur in the vertex enumeration 
 performed by the **vertexenum** package:
