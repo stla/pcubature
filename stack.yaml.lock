@@ -5,19 +5,12 @@
 
 packages:
 - completed:
-    hackage: hmatrix-glpk-0.19.0.0@sha256:cf46c54bc3878bd207674ad88c3389083809f4df862df68ee64c6708dc517a52,1683
+    hackage: hspray-0.5.2.0@sha256:3954e7f3156139b0d22fe3f51192c43ec6ff3f3082b359e72a6cc4f680d2d01b,3778
     pantry-tree:
-      sha256: 8e781b7b10d93e1def514c48da663b1b046ed5c23857938bad1229e9f4a589c1
-      size: 660
+      sha256: 29c9dcb019eb47d721a05872a6404cd42cc5efc109e40fd85b21d85aea1c166b
+      size: 493
   original:
-    hackage: hmatrix-glpk-0.19.0.0@sha256:cf46c54bc3878bd207674ad88c3389083809f4df862df68ee64c6708dc517a52,1683
-- completed:
-    hackage: hspray-0.1.3.0@sha256:45e95f8fc9122a15c046495e841315570b78290fc7e2bcb14494934a304611d0,1942
-    pantry-tree:
-      sha256: 7bd2f87dddb5003d7756011aa3b31e4e8715cb8f59f6b1d94bf8aad7c8305932
-      size: 373
-  original:
-    hackage: hspray-0.1.3.0@sha256:45e95f8fc9122a15c046495e841315570b78290fc7e2bcb14494934a304611d0,1942
+    hackage: hspray-0.5.2.0
 - completed:
     hackage: scubature-1.1.0.0@sha256:f7a939acead8c4a61a1654218bfcb19c3f2bc22e8ef98508558cc0061d3f7f93,1443
     pantry-tree:
@@ -33,12 +26,12 @@ packages:
   original:
     hackage: delaunayNd-0.1.0.2
 - completed:
-    hackage: vertexenum-0.1.1.0@sha256:eb96d4dffbe95e316774a3907afcd7d4434b78f4d4d4fe1bd0e3752cf586a419,3278
+    hackage: vertexenum-1.0.0.0@sha256:0238d856ff1c1458536a6804f42e83c208d3d3f6470f0b46da8e73f7f48f5e50,3770
     pantry-tree:
-      sha256: 6734a36c97856c19749b2dfa35a6bab9eaee520cb53bf6a47e2165fa5378008a
+      sha256: 6e9476717785463455fef69e4b9d5f19b7f218c8922c9e897cc4df2e0119880b
       size: 2344
   original:
-    hackage: vertexenum-0.1.1.0
+    hackage: vertexenum-1.0.0.0
 - completed:
     hackage: Unique-0.4.7.9@sha256:7c37e22b7bb9df935c22112e67043177461aedcebe3a958854f6c0e9ecb54083,2155
     pantry-tree:
@@ -67,9 +60,16 @@ packages:
       size: 542
   original:
     hackage: insert-ordered-containers-0.2.5.3@sha256:7648a0e91b0af2ed553d3950f098438b999c50d885781fc256823b7032d7d389,2420
+- completed:
+    hackage: simplex-method-0.2.0.0@sha256:ccfc12e88789d4e11935061d743b757ff7f6424c2f8f39ec8194cfe7a9af7bce,2398
+    pantry-tree:
+      sha256: f9ef02246ebda808ffcedcecc3ac77a992e5cef99c41a218f65e824f5672b51a
+      size: 614
+  original:
+    hackage: simplex-method-0.2.0.0@sha256:ccfc12e88789d4e11935061d743b757ff7f6424c2f8f39ec8194cfe7a9af7bce,2398
 snapshots:
 - completed:
-    sha256: adbc602422dde10cc330175da7de8609e70afc41449a7e2d6e8b1827aa0e5008
-    size: 649342
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/11.yaml
-  original: lts-20.11
+    sha256: 4a0e5e187fbef423f9c60072bfb1dd56f2a01a07a2667eb1469bd79073cfceaf
+    size: 713340
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/22/20.yaml
+  original: lts-22.20

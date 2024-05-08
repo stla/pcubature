@@ -1,20 +1,22 @@
 {-|
 Module      : Numeric.Integration.PolyhedralCubature
 Description : Multiple integration over convex polytopes.
-Copyright   : (c) Stéphane Laurent, 2023
+Copyright   : (c) Stéphane Laurent, 2023-2024
 License     : GPL-3
 Maintainer  : laurent_step@outlook.fr
 
 Evaluation of integrals over a convex polytope. See README for examples.
 -}
 module Numeric.Integration.PolyhedralCubature
-  ( integrateOnPolytopeN
+  ( 
+    Result(..)
+  , Results(..)
+  , Constraint(..)
+  , VectorD
+  , integrateOnPolytopeN
   , integrateOnPolytope
   , integrateOnPolytopeN'
   , integrateOnPolytope'
-  , Result(..)
-  , Results(..)
-  , Constraint(..)
   , integratePolynomialOnPolytope
   , integratePolynomialOnPolytope'
   )

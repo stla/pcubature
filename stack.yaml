@@ -1,20 +1,19 @@
-resolver: lts-20.11
+resolver: lts-22.20
 
 packages:
 - .
 
 extra-deps:
-  - hmatrix-glpk-0.19.0.0@sha256:cf46c54bc3878bd207674ad88c3389083809f4df862df68ee64c6708dc517a52,1683
-  - hspray-0.1.3.0@sha256:45e95f8fc9122a15c046495e841315570b78290fc7e2bcb14494934a304611d0,1942
+  - hspray-0.5.2.0
   - scubature-1.1.0.0@sha256:f7a939acead8c4a61a1654218bfcb19c3f2bc22e8ef98508558cc0061d3f7f93,1443
   - delaunayNd-0.1.0.2
-  - vertexenum-0.1.1.0
+  - vertexenum-1.0.0.0
   - Unique-0.4.7.9@sha256:7c37e22b7bb9df935c22112e67043177461aedcebe3a958854f6c0e9ecb54083,2155
   - ilist-0.4.0.1@sha256:126019faf3d02f305c5762ae9602be1cbf76291153a1a7461270ad1429678111,3305
   - hashable-1.4.3.0@sha256:f3bf68acfa0df7a064a378ef2cdcfeb55e6fb96100675f4c593556dcbf3d7194,4718
   - insert-ordered-containers-0.2.5.3@sha256:7648a0e91b0af2ed553d3950f098438b999c50d885781fc256823b7032d7d389,2420
+  - simplex-method-0.2.0.0@sha256:ccfc12e88789d4e11935061d743b757ff7f6424c2f8f39ec8194cfe7a9af7bce,2398
 
-# !!!!!!!!!! UNCOMMENT BELOW !!!!!!!!!!
 #flags:
 #  hmatrix:
 #    openblas: true
